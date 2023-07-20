@@ -37,8 +37,8 @@ exports.getLotById = (req, res) => {
 };
 
 exports.createLot = (req, res) => {
-  const { description, surface, vocation, nom, lott } = req.body;
-  const newLot = { description, surface, vocation, nom, lott };
+  const { code_lot, description, surface, nom, lott, id_vocation } = req.body;
+  const newLot = { code_lot, description, surface, nom, lott, id_vocation };
   Lot.createLot(newLot, (err, results) => {
     if (err) {
       console.error(err);
@@ -51,8 +51,8 @@ exports.createLot = (req, res) => {
 
 exports.updateLot = (req, res) => {
   const id = req.params.id;
-  const { description, surface, vocation, nom, lott } = req.body;
-  const updatedLot = { description, surface, vocation, nom, lott };
+  const { code_lot, description, surface, nom, lott, id_vocation } = req.body;
+  const updatedLot =  { code_lot, description, surface, nom, lott, id_vocation };
   Lot.updateLot(id, updatedLot, (err, results) => {
     if (err) {
       console.error(err);

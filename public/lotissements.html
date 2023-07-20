@@ -63,6 +63,12 @@
 									</a>
 								</li>
 								<li class="sidebar-item">
+									<a class="sidebar-link" href="vocation.html">
+										<i class="align-middle" data-feather="circle"></i>
+										<span class="align-middle">Vocation</span>
+									</a>
+								</li>
+								<li class="sidebar-item">
 									<a class="sidebar-link" href="participants.html">
 										<i class="align-middle" data-feather="circle"></i>
 										<span class="align-middle">Participants</span>
@@ -94,7 +100,13 @@
 								<li class="sidebar-item">
 									<a class="sidebar-link" href="offre_soumission.html">
 										<i class="align-middle" data-feather="circle"></i>
-										<span class="align-middle">Offre de soumission</span>
+										<span class="align-middle">Retrait cahier de charge</span>
+									</a>
+								</li>
+								<li class="sidebar-item">
+									<a class="sidebar-link" href="appel_offre_lotissement.html">
+										<i class="align-middle" data-feather="circle"></i>
+										<span class="align-middle">Appel offre / Lotissement</span>
 									</a>
 								</li>
 							</ul>
@@ -156,6 +168,15 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
+													<label for="lotissement_code" class="form-label">Code
+														lotissement</label>
+													<input class="form-control" type="text" id="lotissement_code"
+														placeholder="Code lotissement">
+													<span class="fa fa-user" aria-hidden="true"></span>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
 													<label for="lotissement_nom" class="form-label">Nom
 														lotissement</label>
 													<input class="form-control" type="text" id="lotissement_nom"
@@ -206,6 +227,7 @@
 										<table class="table table-sm" id="lotissement_table">
 											<thead>
 												<tr>
+													<th scope="col" >Code lotissement</th>
 													<th scope="col" >Nom lotissement</th>
 													<th scope="col">Localisation lotissement</th>
 													<th scope="col">Description Lotissement</th>

@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     var table = $('#appel_offre_table').DataTable({
         "ajax": {
-            "url": "/api/appel-offre/get-All"
+            "url": "/api/appel-offre/getAll"
         },
         "columns": [
             { "data": "nom" },
@@ -29,7 +29,6 @@ $(document).ready(function () {
                     return formattedDate;
                 }
             },
-            { "data": "lotissement" },
             { "data": "username" },
             {
                 "data": null,
@@ -53,31 +52,11 @@ $(document).ready(function () {
         'responsive': true
     });
 
-    // Load the lotissements for the dropdown list
-    $.ajax({
-        url: "/api/lotissemnts/getAll",
-        method: "GET",
-        success: function (response) {
-            response = response.data
-            if (response && response.length > 0) {
-                var options = '';
-                response.forEach(function (lotissement) {
-                    options += '<option value="' + lotissement.id_lots + '">' + lotissement.nom + '</option>';
-                });
-                $('#lotissement_select').html(options);
-            }
-        },
-        error: function (error) {
-            console.log(error);
-            // Handle error
-        }
-    });
 
     $('#appel_offre_table tbody').on('click', '.modify-button', function () {
         var data = table.row($(this).parents('tr')).data();
         // Fill the input fields with the data from the clicked row
 
-        $("#lotissement_select").val(data.id_lots);
         $("#id_appel_offre").val(data.id_appel);
         $("#nom_af").val(data.nom);
         $("#num_af").val(data.num_appel);
@@ -106,7 +85,6 @@ $(document).ready(function () {
     });
 
     $("#clear").click(function () {
-        $("#lotissement_select").val("");
         $("#id_appel_offre").val("0");
         $("#nom_af").val("");
         $("#num_af").val("");
@@ -115,7 +93,6 @@ $(document).ready(function () {
     });
 
     $("#save_appel_offre").click(function () {
-        var lotissementId = $("#lotissement_select").val();
         var idAppelOffre = $("#id_appel_offre").val();
         var nom_af = $("#nom_af").val();
         var num_af = $("#num_af").val();
@@ -137,10 +114,9 @@ $(document).ready(function () {
         $.ajax({
             url: url,
             method: method,
-            data: { nom: nom_af, num_appel: num_af, date_creation: date_af, date_limite: date_lim_af, id_lots: lotissementId, id_resp: 1 },
+            data: { nom: nom_af, num_appel: num_af, date_creation: date_af, date_limite: date_lim_af, id_resp: 1 },
             success: function (response) {
                 console.log(response);
-                $("#lotissement_select").val("");
                 $("#id_appel_offre").val("0");
                 $("#nom_af").val("");
                 $("#num_af").val("");

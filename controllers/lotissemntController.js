@@ -27,8 +27,8 @@ exports.getLotissemntById = (req, res) => {
 };
 
 exports.createLotissemnt = (req, res) => {
-  const { nom, description, location } = req.body;
-  const newLotissemnt = { nom, description, location };
+  const { code_lotissement, nom, description, location } = req.body;
+  const newLotissemnt = { code_lotissement, nom, description, location };
   Lotissemnt.createLotissemnt(newLotissemnt, (err, results) => {
     if (err) {
       console.error(err);
@@ -41,8 +41,8 @@ exports.createLotissemnt = (req, res) => {
 
 exports.updateLotissemnt = (req, res) => {
   const id = req.params.id;
-  const { nom, description, location } = req.body;
-  const updatedLotissemnt = { nom, description, location };
+  const { code_lotissement, nom, description, location } = req.body;
+  const updatedLotissemnt = { code_lotissement, nom, description, location };
   Lotissemnt.updateLotissemnt(id, updatedLotissemnt, (err, results) => {
     if (err) {
       console.error(err);

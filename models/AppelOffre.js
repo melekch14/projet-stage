@@ -2,13 +2,9 @@ const db = require('../config/db');
 
 class AppelOffre {
   static getAllAppelsOffre(callback) {
-    db.query('SELECT * FROM appel_offre', callback);
+    db.query('select a.*,res.username from appel_offre a join responsable res on res.id_res = a.id_resp', callback);
   }
-
-  static getAllAppelsOffre2(callback) {
-    db.query('select a.*,res.username, l.nom as "lotissement" from appel_offre a join responsable res on res.id_res = a.id_resp join lotissemnt l on l.id_lots = a.id_lots', callback);
-  }
-
+  
   static getAppelOffreById(id, callback) {
     db.query('SELECT * FROM appel_offre WHERE id_appel = ?', [id], callback);
   }

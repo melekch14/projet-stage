@@ -27,8 +27,8 @@ exports.getParticipantById = (req, res) => {
 };
 
 exports.createPartcipant = (req, res) => {
-  const  nom = req.body;
-  const newParticipant = nom;
+  const  {code_participant, nom} = req.body;
+  const newParticipant = {code_participant, nom};
   Participant.createPartcipant(newParticipant, (err, results) => {
     if (err) {
       console.error(err);
@@ -41,8 +41,8 @@ exports.createPartcipant = (req, res) => {
 
 exports.updateParticipant = (req, res) => {
   const id = req.params.id;
-  const nom = req.body;
-  const updateParticipant =  nom;
+  const  {code_participant, nom} = req.body;
+  const updateParticipant =  {code_participant, nom};
   Participant.updateParticipant(id, updateParticipant, (err, results) => {
     if (err) {
       console.error(err);

@@ -62,6 +62,12 @@
 										<span class="align-middle">Lotissements</span>
 									</a>
 								</li>
+								<li class="sidebar-item">
+									<a class="sidebar-link" href="vocation.html">
+										<i class="align-middle" data-feather="circle"></i>
+										<span class="align-middle">Vocation</span>
+									</a>
+								</li>
 								<li class="sidebar-item active">
 									<a class="sidebar-link" href="participants.html">
 										<i class="align-middle" data-feather="circle"></i>
@@ -94,7 +100,13 @@
 								<li class="sidebar-item">
 									<a class="sidebar-link" href="offre_soumission.html">
 										<i class="align-middle" data-feather="circle"></i>
-										<span class="align-middle">Offre de soumission</span>
+										<span class="align-middle">Retrait cahier de charge</span>
+									</a>
+								</li>
+								<li class="sidebar-item">
+									<a class="sidebar-link" href="appel_offre_lotissement.html">
+										<i class="align-middle" data-feather="circle"></i>
+										<span class="align-middle">Appel offre / Lotissement</span>
 									</a>
 								</li>
 							</ul>
@@ -154,6 +166,14 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
+													<label for="code_participant" class="form-label">Code participant</label>
+													<input class="form-control" type="text" id="code_participant"
+														placeholder="Code participant">
+													<span class="fa fa-user" aria-hidden="true"></span>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
 													<label for="participant_nom" class="form-label">Nom participant</label>
 													<input class="form-control" type="text" id="participant_nom"
 														placeholder="Nom participant">
@@ -184,6 +204,7 @@
 										<table class="table table-sm" id="participants_table">
 											<thead>
 												<tr>
+													<th scope="col">Code participant</th>
 													<th scope="col">Nom participant</th>
 													<th scope="col"></th>
 													<th scope="col"></th>

@@ -6,7 +6,7 @@ class Lot {
   }
 
   static getAllLots2(callback) {
-    db.query('SELECT lotissemnt.nom as "lott", lotissemnt.id_lots , l.id_lot, l.description,l.surface,l.vocation,l.nom FROM lotissemnt join lot l on lotissemnt.id_lots = l.lott', callback);
+    db.query('SELECT lotissement.nom as "lott", lotissement.id_lots, v.label as "vocation", v.id_vocation , l.id_lot, l.code_lot, l.description,l.surface,l.nom FROM lotissement join lot l on lotissement.id_lots = l.lott join vocation v on v.id_vocation = l.id_vocation', callback);
   }
 
   static getLotById(id, callback) {

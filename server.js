@@ -12,6 +12,8 @@ const sousOffreRoutes = require('./routes/sousOffreRoutes');
 const lotRoutes = require('./routes/lotRoutes');
 const soumissionRoutes = require('./routes/soumissionRoutes');
 const resultatSoumissionRoutes = require('./routes/resultatSoumissionRoutes');
+const vocationRoutes = require('./routes/VocationRoutes');
+const appelLotissementRoutes = require('./routes/AppelLotissementRoutes');
 
 const app = express();
 const PORT = 3000;
@@ -31,6 +33,8 @@ app.use('/api/sous-offre', sousOffreRoutes);
 app.use('/api/lot', lotRoutes);
 app.use('/api/soumission', soumissionRoutes);
 app.use('/api/resultat-soumission', resultatSoumissionRoutes);
+app.use('/api/vocation', vocationRoutes);
+app.use('/api/appelLotissement', appelLotissementRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

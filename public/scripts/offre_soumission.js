@@ -11,8 +11,8 @@ $(document).ready(function () {
             "url": "/api/offre-de-soumission/getAll"
         },
         "columns": [
-            { "data": "participant_id" },
-            { "data": "id_appof" },
+            { "data": "participant" },
+            { "data": "offre" },
             {
                 "data": "date",
                 "render": function (data, type, row) {
@@ -89,7 +89,7 @@ $(document).ready(function () {
 
         $("#appel_select").val(data.id_appof);
         $("#participant_select").val(data.participant_id);
-        $("#id_offre").val(data.id_off);
+        $("#id_offre").val(data.id_retrait);
         var date = moment(data.date).format("YYYY-MM-DD");
         $("#date").val(date);
         $("#description").val(data.description);
@@ -97,7 +97,7 @@ $(document).ready(function () {
 
     $('#offre_soumission_table tbody').on('click', '.delete-button', function () {
         var data = table.row($(this).parents('tr')).data();
-        var id = data.id_off;
+        var id = data.id_retrait;
 
         $.ajax({
             url: "/api/offre-de-soumission/delete/" + id,
@@ -124,7 +124,7 @@ $(document).ready(function () {
     $("#save_offre").click(function () {
         var appelId = $("#appel_select").val();
         var participantId = $("#participant_select").val();
-        var id_offre = $("#id_offre").val();
+        var id_retrait = $("#id_offre").val();
         var date = $("#date").val();
         var description = $("#description").val();
 
@@ -132,11 +132,11 @@ $(document).ready(function () {
         var url = "";
         var method = "";
 
-        if (id_offre === "0") {
+        if (id_retrait === "0") {
             method = "POST";
             url = "/api/offre-de-soumission/create";
         } else {
-            url = "/api/offre-de-soumission/update/" + id_offre;
+            url = "/api/offre-de-soumission/update/" + id_retrait;
             method = "PUT";
         }
 

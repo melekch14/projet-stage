@@ -5,10 +5,6 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
-	<meta name="author" content="AdminKit">
-	<meta name="keywords"
-		content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
@@ -18,7 +14,19 @@
 	<title>Blank Page | AdminKit Demo</title>
 
 	<link href="css/app.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css"
+		href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+
+	<style>
+		#lotissement_table td,th {
+		  text-align: left;
+		}
+	  </style>
 </head>
 
 <body>
@@ -34,10 +42,10 @@
 						Menu
 					</li>
 
-					<li class="sidebar-item active">
+					<li class="sidebar-item">
 						<a class="sidebar-link" href="index.html">
-							<i class="align-middle" data-feather="sliders"></i> <span
-								class="align-middle">Tableau de bord</span>
+							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Tableau de
+								bord</span>
 						</a>
 					</li>
 					<li class="sidebar-item">
@@ -46,7 +54,7 @@
 							<i class="align-middle" data-feather="layers"></i>
 							<span class="align-middle">Gestion des données</span>
 						</a>
-						<div class="collapse" id="submenu">
+						<div class="collapse show" id="submenu">
 							<ul class="sidebar-dropdown list-unstyled">
 								<li class="sidebar-item">
 									<a class="sidebar-link" href="lotissements.html">
@@ -54,7 +62,7 @@
 										<span class="align-middle">Lotissements</span>
 									</a>
 								</li>
-								<li class="sidebar-item">
+								<li class="sidebar-item active">
 									<a class="sidebar-link" href="vocation.html">
 										<i class="align-middle" data-feather="circle"></i>
 										<span class="align-middle">Vocation</span>
@@ -72,11 +80,9 @@
 										<span class="align-middle">Lots</span>
 									</a>
 								</li>
-								
 							</ul>
 						</div>
 					</li>
-
 					<li class="sidebar-item">
 						<a class="sidebar-link" data-bs-toggle="collapse" href="#submenu2" role="button"
 							aria-expanded="false" aria-controls="submenu">
@@ -107,6 +113,8 @@
 						</div>
 					</li>
 
+
+
 			</div>
 		</nav>
 
@@ -126,7 +134,7 @@
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
 								data-bs-toggle="dropdown">
-								 <span class="text-dark">Ryhab arafet</span>
+								<span class="text-dark">Ryhab arafet</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1"
@@ -148,18 +156,94 @@
 
 			<main class="content">
 				<div class="container-fluid p-0">
-
 					<div class="row">
 						<div class="col-12">
-							<div class="card">
+							<div class="card border">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Empty card</h5>
+									<h5 class="card-title">Vocations</h5>
 								</div>
 								<div class="card-body">
+									<form>
+										<input type="hidden" id="id_vocation" value="0">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="code_vocation" class="form-label">Code
+														lotissement</label>
+													<input class="form-control" type="text" id="code_vocation"
+														placeholder="Code vocation">
+													<span class="fa fa-user" aria-hidden="true"></span>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="lotissement_nom" class="form-label">label</label>
+													<input class="form-control" type="text" id="label"
+														placeholder="Label">
+													<span class="fa fa-user" aria-hidden="true"></span>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="secteur" class="form-label">Secteur</label>
+													<input class="form-control" type="text" id="secteur"
+														placeholder="secteur">
+													<span class="fa fa-user form-control-feedback"
+														aria-hidden="true"></span>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="superficie" class="form-label">Superficie</label>
+													<input class="form-control" type="text" id="superficie"
+														placeholder="superficie">
+													<span class="fa fa-user form-control-feedback"
+														aria-hidden="true"></span>
+												</div>
+											</div>
+											<div class="col-md-12 stbtn">
+												<div class="form-group">
+													<button type="button" id="save_vocation"
+														class="btn btn-success">Enregistrer</button>
+													<button id="clear" type="button" class="btn btn-warning">Vider</button>
+												</div>
+											</div>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
 					</div>
+
+					<div class="row mt-4">
+						<div class="col-12">
+							<div class="card border">
+								<div class="card-header">
+									<h5 class="card-title">Vocations</h5>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive-sm">
+										<table class="table table-sm" id="vocation_table">
+											<thead>
+												<tr>
+													<th scope="col">Code vocation</th>
+													<th scope="col">Label</th>
+													<th scope="col">Secteur</th>
+													<th scope="col">Superficie</th>
+													<th scope="col"></th>
+													<th scope="col"></th>
+												</tr>
+											</thead>
+											<tbody>
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
 
 				</div>
 			</main>
@@ -198,8 +282,8 @@
 	</div>
 
 	<script src="js/app.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="scripts/dashboard.js"></script>
+	<script src="scripts/vocation.js"></script>
+
 
 </body>
 

@@ -11,9 +11,10 @@ $(document).ready(function () {
       "url": "/api/lotissemnts/getAll"
     },
     "columns": [
+      { "data": "code_lotissement" },
       { "data": "nom" },
-      { "data": "description" },
       { "data": "location" },
+      { "data": "description" },
       {
         "data": null,
         "render": function (data, type, row) {
@@ -40,6 +41,7 @@ $(document).ready(function () {
     var data = table.row($(this).parents('tr')).data();
     // Fill the input fields with the data from the clicked row
     $("#lotissement_nom").val(data.nom);
+    $("#lotissement_code").val(data.code_lotissement);
     $("#lotissement_location").val(data.description);
     $("#lotissement_description").val(data.location);
     $("#id_lots").val(data.id_lots);
@@ -66,6 +68,7 @@ $(document).ready(function () {
 
   $("#clear").click(function() {
     $("#lotissement_nom").val("");
+    $("#lotissement_code").val("");
     $("#lotissement_location").val("");
     $("#lotissement_description").val("");
     $("#id_lots").val("0");
@@ -74,6 +77,7 @@ $(document).ready(function () {
   $("#save_lotissement").click(function () {
 
     var nom_lotissement = $("#lotissement_nom").val();
+    var code_lotissement = $("#lotissement_code").val();
     var location_lotissement = $("#lotissement_location").val();
     var description_lotissement = $("#lotissement_description").val();
 
@@ -92,10 +96,11 @@ $(document).ready(function () {
     $.ajax({
       url: url,
       method: method,
-      data: { nom: nom_lotissement, description: description_lotissement, location: location_lotissement },
+      data: { code_lotissement:code_lotissement, nom: nom_lotissement, description: description_lotissement, location: location_lotissement },
       success: function (response) {
         console.log(response);
         $("#lotissement_nom").val("");
+        $("#lotissement_code").val("");
         $("#lotissement_location").val("");
         $("#lotissement_description").val("");
         table.ajax.reload(null, false);

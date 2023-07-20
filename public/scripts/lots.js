@@ -11,6 +11,7 @@ $(document).ready(function () {
             "url": "/api/lot/get-All"
         },
         "columns": [
+            { "data": "code_lot" },
             { "data": "lott" },
             { "data": "nom" },
             { "data": "surface" },
@@ -58,6 +59,25 @@ $(document).ready(function () {
         }
     });
 
+    $.ajax({
+        url: "/api/vocation/getAll",
+        method: "GET",
+        success: function (response) {
+            response = response.data
+            if (response && response.length > 0) {
+                var options = '';
+                response.forEach(function (vocation) {
+                    options += '<option value="' + vocation.id_vocation + '">' + vocation.label + '</option>';
+                });
+                $('#vocation_select').html(options);
+            }
+        },
+        error: function (error) {
+            console.log(error);
+            // Handle error
+        }
+    });
+
     $('#lots_table tbody').on('click', '.modify-button', function () {
         var data = table.row($(this).parents('tr')).data();
         // Fill the input fields with the data from the clicked row
@@ -65,8 +85,9 @@ $(document).ready(function () {
         $("#lot_nom").val(data.nom);
         $("#description").val(data.description);
         $("#surface").val(data.surface);
-        $("#vocation").val(data.vocation);
+        $("#vocation_select").val(data.id_vocation);
         $("#id_lot").val(data.id_lot);
+        $("#code_lot").val(data.code_lot);
     });
 
     $('#lots_table tbody').on('click', '.delete-button', function () {
@@ -88,20 +109,22 @@ $(document).ready(function () {
     });
 
     $("#clear").click(function () {
+        $("#code_lot").val("");
         $("#lotissement_select").val("");
         $("#lot_nom").val("");
         $("#description").val("");
         $("#surface").val("");
-        $("#vocation").val("");
+        $("#vocation_select").val("");
         $("#id_lot").val("0");
     });
 
     $("#save_lot").click(function () {
+        var code_lot = $("#code_lot").val();
         var lotissementId = $("#lotissement_select").val();
         var nomLot = $("#lot_nom").val();
         var idLot = $("#id_lot").val();
         var surface = $("#surface").val();
-        var vocation = $("#vocation").val();
+        var vocation = $("#vocation_select").val();
         var description = $("#description").val();
         var url = "";
         var method = "";
@@ -117,14 +140,15 @@ $(document).ready(function () {
         $.ajax({
             url: url,
             method: method,
-            data: { description: description, surface: surface, vocation: vocation, nom: nomLot, lott: lotissementId, },
+            data: { code_lot:code_lot, description: description, surface: surface, nom: nomLot, lott: lotissementId, id_vocation: vocation },
             success: function (response) {
                 console.log(response);
+                $("#code_lot").val("");
                 $("#lotissement_select").val("");
                 $("#lot_nom").val("");
                 $("#description").val("");
                 $("#surface").val("");
-                $("#vocation").val("");
+                $("#vocation_select").val("");
                 $("#id_lot").val("0");
                 table.ajax.reload(null, false);
             },

@@ -37,8 +37,8 @@ exports.getAppelOffreById = (req, res) => {
 };
 
 exports.createAppelOffre = (req, res) => {
-  const { nom, num_appel, date_creation, date_limite, id_lots, id_resp } = req.body;
-  const newAppelOffre = { nom, num_appel, date_creation, date_limite, id_lots, id_resp };
+  const { nom, num_appel, date_creation, date_limite, id_resp } = req.body;
+  const newAppelOffre = { nom, num_appel, date_creation, date_limite, id_resp };
   AppelOffre.createAppelOffre(newAppelOffre, (err, results) => {
     if (err) {
       console.error(err);
@@ -51,8 +51,8 @@ exports.createAppelOffre = (req, res) => {
 
 exports.updateAppelOffre = (req, res) => {
   const id = req.params.id;
-  const { nom, num_appel, date_creation, date_limite, id_lots, id_resp } = req.body;
-  const updatedAppelOffre = { nom, num_appel, date_creation, date_limite, id_lots, id_resp };
+  const { nom, num_appel, date_creation, date_limite, id_resp } = req.body;
+  const updatedAppelOffre = { nom, num_appel, date_creation, date_limite, id_resp };
   AppelOffre.updateAppelOffre(id, updatedAppelOffre, (err, results) => {
     if (err) {
       console.error(err);
